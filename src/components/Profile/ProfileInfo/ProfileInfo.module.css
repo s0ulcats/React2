@@ -1,0 +1,39 @@
+.descriptionBlock {
+    padding: 10px;
+    font-family: sans-serif;
+    color: pink;
+}
+
+.myContacts {
+    display: flex;
+    align-items: start;
+    gap: 10px;
+}
+
+.myContacts a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background: rgb(49, 6, 120);
+    transition: background 0.3s ease;
+}
+
+.myContacts a:hover {
+    background: blue;
+    /* Обратный градиент при наведении */
+}
+
+.aboutMe {
+    font-weight: bold;
+    color: #fff;
+}
+
+.aboutMeHead {
+    color: pink;
+}
+
+.fullName {
+    color: greenyellow;
+    font-weight: bold;
+}
