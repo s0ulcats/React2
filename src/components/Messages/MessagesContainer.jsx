@@ -1,7 +1,9 @@
 import React from "react";
 import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/messagesReducer'
-import Messages from "./Messages";
 import { connect } from "react-redux";
+import Messages from './Messages'
+import withAuthRedirect from "../../hoc/WithAuthRedirect.js";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
     debugger
@@ -9,17 +11,17 @@ let mapStateToProps = (state) => {
         messagesPage: state.messagesPage
     }
 }
+
 let mapDispatchToProps = (dispatch) => {
     debugger
     return {
-        sendMessage: () => {
-            dispatch(sendMessageActionCreator());
-        },
-        updateNewMessageText: (newMessage) => {
-            dispatch(updateNewMessageTextActionCreator(newMessage));
+        sendMessage: (newMessageText) => {
+            dispatch(sendMessageActionCreator(newMessageText));
         }
     }
 }
-let SuperMessagesContainer = connect(mapStateToProps, mapDispatchToProps)(Messages)
 
-export default SuperMessagesContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withAuthRedirect
+)(Messages);

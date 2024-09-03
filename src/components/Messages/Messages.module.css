@@ -5,6 +5,7 @@
 
 .dialogsItems {
     padding: 10px;
+    border-right: 2px solid aqua;
 }
 
 .dialogsItems .active {
@@ -40,5 +41,20 @@
 }
 
 .textarea {
-    color: black;
+    background: gray;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    resize: none;
+    overflow: hidden;
+    color: pink;
+}
+
+.error {
+    color: red;
+}
+
+.errorTextarea {
+    border: 2px solid red;
+    color: red;
 }

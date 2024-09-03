@@ -9,7 +9,7 @@ const Header = (props) => {
             <img src='https://www.edigitalagency.com.au/wp-content/uploads/netflix-logo-png-large.png' />
 
             <div className={classes.loginBlock}>
-                {props.isAuth ? props.login
+                {props.isAuth ? <div>{props.login} - <button onClick={props.logout} >Log out</button></div>
                     : <NavLink to={'/login'}>
                         <img src={loginIMG} alt="" />
                     </NavLink>

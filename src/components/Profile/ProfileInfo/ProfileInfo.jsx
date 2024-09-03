@@ -2,6 +2,8 @@ import React from "react";
 import classes from './ProfileInfo.module.css'
 import Preloader from "../../common/preloader/Preloader";
 import { NavLink } from 'react-router-dom'
+import loginIMG from '../../../assets/images/unknownUser.png'
+import ProfileStatus from './ProfileStatus'
 const ProfileInfo = (props) => {
 
     if (!props.profile) {
@@ -14,7 +16,9 @@ const ProfileInfo = (props) => {
                 <img src='https://c4.wallpaperflare.com/wallpaper/842/306/567/cool-pictures-of-mountains-1920x1080-wallpaper-preview.jpg' alt="" />
             </div>
             <div className={classes.descriptionBlock}>
-                <img alt="" src={props.profile.photos.large} />
+                {!props.profile.photos.large 
+                ? <img className={classes.unLoginImg} alt="" src={loginIMG} />
+                : <img alt="" src={props.profile.photos.large} />}
                 <div className={classes.fullName}>
                     {props.profile.fullName}
                 </div>
@@ -57,6 +61,7 @@ const ProfileInfo = (props) => {
                         </>
                     )}
                 </div>
+                <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
                 ava + description
             </div>
         </div>

@@ -16,8 +16,7 @@ let initialState = {
         { id: 3, name: 'biden', img: "https://i.pinimg.com/236x/66/09/da/6609da9ce2f30496520a6ad6d4cadba4.jpg" },
         { id: 4, name: 'maslina', img: "https://i.pinimg.com/236x/fe/be/01/febe01fff0175a10c8ada6207afa9554.jpg" },
         { id: 5, name: 'dfdf', img: "https://i.pinimg.com/236x/0f/3d/12/0f3d123e5066627d4f039e5d113720ba.jpg" }
-    ],
-    newMessageText: ''
+    ]
 }
 
 const messagesReducer = (state = initialState, action) => {
@@ -25,7 +24,7 @@ const messagesReducer = (state = initialState, action) => {
         case SEND_MESSAGE:
             let newMessage = {
                 id: state.messagesData.length + 1,
-                message: state.newMessageText,
+                message: action.newMessageText,
                 img: AVA_IMG
             };
             return {
@@ -33,17 +32,11 @@ const messagesReducer = (state = initialState, action) => {
                 newMessageText: '',
                 messagesData: [...state.messagesData, newMessage]
             }
-        case UPDATE_NEW_MESSAGE_TEXT:
-            return {
-                ...state,
-                newMessageText: action.newMessage
-            }
         default:
             return state;
     }
 };
 
-export const sendMessageActionCreator = () => ({ type: SEND_MESSAGE });
-export const updateNewMessageTextActionCreator = (text) => ({ type: UPDATE_NEW_MESSAGE_TEXT, newMessage: text });
+export const sendMessageActionCreator = (newMessageText) => ({ type: SEND_MESSAGE, newMessageText });
 
 export default messagesReducer;

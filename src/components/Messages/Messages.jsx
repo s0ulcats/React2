@@ -1,7 +1,9 @@
 import React from "react";
-import classes from './Messages.module.css'
+import classes from './Messages.module.css';
+import { Navigate } from 'react-router-dom';
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
+import AddMessageForm from "./AddMessageForm";
 
 const Messages = (props) => {
     let dialogsElements = props.messagesPage.dialogsData.map(dialog =>
@@ -11,16 +13,13 @@ const Messages = (props) => {
         <Message message={message.message} key={message.id} img={message.img} />
     );
 
-    let newMessageElement = React.createRef();
-
-    let sendMessage = () => {
-        props.sendMessage()
+    let addNewMessage = (values) => {
+        props.sendMessage(values.newMessageText);
     };
 
-    let onMessageChange = () => {
-        let newMessage = newMessageElement.current.value;
-        props.updateNewMessageText(newMessage )
-    };
+    if (!props.isAuth) {
+        return <Navigate to={'/login'} />;
+    }
 
     return (
         <div className={classes.dialogs}>
@@ -29,16 +28,7 @@ const Messages = (props) => {
             </div>
             <div className={classes.messages}>
                 {messagesElements}
-                <div>
-                    <textarea
-                        ref={newMessageElement}
-                        onChange={onMessageChange}
-                        value={props.messagesPage.newMessageText} // Должно отображать текущее состояние
-                    />
-                </div>
-                <div>
-                    <button onClick={sendMessage}>Send</button>
-                </div>
+                <AddMessageForm onSubmit={addNewMessage} />
             </div>
         </div>
     );

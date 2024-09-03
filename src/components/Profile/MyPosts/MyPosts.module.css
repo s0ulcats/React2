@@ -6,6 +6,30 @@
     margin: start;
 }
 
+.textarea {
+    background: gray;
+    border: 2px solid black;
+    border-radius: 15px;
+    padding: 20px;
+    resize: none;
+    overflow: hidden;
+    color: pink;
+}
+
+.postsBlock button {
+    border: 2px solid black;
+    background-color: gray;
+    display: flex;
+    border-radius: 10px;
+    color: pink;
+    margin-left: 8px;
+    transition: transform 0.3s;
+}
+
+.postsBlock button:hover {
+    transform: scale(1.1);
+}
+
 .posts {
     margin-top: 20px;
 }
@@ -16,3 +40,11 @@ h3 {
     margin-bottom: 20px;
 }
 
+.error {
+    color: red;
+}
+
+.errorTextarea {
+    border: 2px solid red;
+    color: red;
+}

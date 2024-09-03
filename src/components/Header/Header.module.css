@@ -31,3 +31,7 @@
     color: pink;
     text-decoration: none;
 }
+
+.loginBlock img {
+    width: 50px;
+}

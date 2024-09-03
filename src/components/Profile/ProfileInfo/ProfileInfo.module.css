@@ -37,3 +37,17 @@
     color: greenyellow;
     font-weight: bold;
 }
+
+.unLoginImg {
+    width: 200px;
+    height: 200px;
+    transition: transform 0.3s;
+}
+
+.descriptionBlock img :hover {
+    transform: scale(1.1);
+}
+
+.descriptionBlock {
+    transition: transform 0.3s;
+}
