@@ -12,9 +12,6 @@ const ProfileContainer = (props) => {
     useEffect(() => {
         if(!userId) {
             userId = this.props.authorizedUserId
-            if (!userId) {
-                this.props.history.push('/login')
-            }
         }
         props.getUserProfile(userId)
         props.getStatus(userId)
@@ -37,6 +34,5 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
-    withAuthRedirect
+    connect(mapStateToProps, { getUserProfile, getStatus, updateStatus })
 )(ProfileContainer)

@@ -1,32 +1,28 @@
 import React from "react";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form } from "formik";
 import loginFormSchema from "../FormValidation/LoginFormSchema";
+import { createField, errorInField } from "../../utils/FormHelper";
 
-const LoginReduxForm = (props) => {
+const LoginReduxForm = ({onSubmit}) => {
     return (
         <Formik
             initialValues={{ email: "", password: "", rememberMe: false }}
             validationSchema={loginFormSchema}
-            onSubmit={props.onSubmit}
+            onSubmit={onSubmit}
         >
             {({ isSubmitting }) => (
                 <Form>
-                    <div>
-                        <Field type="text" name="email" placeholder="e-mail" />
-                        <ErrorMessage name="email" component="div" />
-                    </div>
+                        {createField("text", "email", "e-mail")}
+                        {errorInField("email", "div")}
 
-                    <div>
-                        <Field type="password" name="password" placeholder="password" />
-                        <ErrorMessage name="password" component="div" />
-                    </div>
+                        {createField("password", "password", "password")}
+                        {errorInField("password", "div")}
 
-                    <div>
-                        <Field type="checkbox" name="rememberMe" />
+                        {createField("checkbox", "rememberMe", null)}
                         <label htmlFor="rememberMe"> remember me </label>
-                    </div>
+                        
 
-                    <ErrorMessage name="_error" component="div" />
+                    {errorInField("_error", "div")} 
 
                     <button type="submit" disabled={isSubmitting}>Log in</button>
                 </Form>

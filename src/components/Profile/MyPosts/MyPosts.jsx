@@ -1,13 +1,16 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { Field, Form, Formik, ErrorMessage } from "formik";
 import postFormSchema from "../../FormValidation/PostFormSchema";
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = (props) => {
-    let messageElements = props.postData.map(post =>
-        <Post message={post.message} key={post.id} likes={post.likesCount} />
-    );
+
+const MyPosts = React.memo(props => {
+
+    let messageElements = 
+    [...props.postData]
+    .reverse()
+    .map(post => <Post message={post.message} key={post.id} likes={post.likesCount} />);
 
     let onAddPost = (values) => {
         props.addPost(values.newPostText);
@@ -22,7 +25,7 @@ const MyPosts = (props) => {
             </div>
         </div>
     );
-};
+})
 
 const AddNewPostForm = (props) => {
     return (

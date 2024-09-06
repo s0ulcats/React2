@@ -4,15 +4,15 @@ import { login } from "../../redux/auth-reducer";
 import LoginReduxForm from "./LoginReduxForm";
 import { Route, Routes } from 'react-router-dom';
 
-const Login = (props) => {
+const Login = ({login, isAuth}) => {
     const handleSubmit = (values, { setErrors }) => {
-        props.login(values)
+        login(values)
             .catch(error => {
                 setErrors({ _error: error });
             });
     };
 
-    if (props.isAuth) {
+    if (isAuth) {
         return (
             <Routes>
                 <Route path={'/profile'} />
