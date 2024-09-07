@@ -1,22 +1,22 @@
 {
   "files": {
-    "main.css": "/react2/static/css/main.7ae0011d.css",
-    "main.js": "/react2/static/js/main.c72dd307.js",
-    "static/css/781.d7544690.chunk.css": "/react2/static/css/781.d7544690.chunk.css",
-    "static/js/781.a77b1a35.chunk.js": "/react2/static/js/781.a77b1a35.chunk.js",
-    "static/css/36.f8f25117.chunk.css": "/react2/static/css/36.f8f25117.chunk.css",
-    "static/js/36.686886b9.chunk.js": "/react2/static/js/36.686886b9.chunk.js",
-    "index.html": "/react2/index.html",
-    "static/media/preloader.svg": "/react2/static/media/preloader.18a8c1b6ca881fcd26fbad92c460f585.svg",
-    "main.7ae0011d.css.map": "/react2/static/css/main.7ae0011d.css.map",
-    "main.c72dd307.js.map": "/react2/static/js/main.c72dd307.js.map",
-    "781.d7544690.chunk.css.map": "/react2/static/css/781.d7544690.chunk.css.map",
-    "781.a77b1a35.chunk.js.map": "/react2/static/js/781.a77b1a35.chunk.js.map",
-    "36.f8f25117.chunk.css.map": "/react2/static/css/36.f8f25117.chunk.css.map",
-    "36.686886b9.chunk.js.map": "/react2/static/js/36.686886b9.chunk.js.map"
+    "main.css": "/demo-soul/static/css/main.7ae0011d.css",
+    "main.js": "/demo-soul/static/js/main.5c98273a.js",
+    "static/css/781.d7544690.chunk.css": "/demo-soul/static/css/781.d7544690.chunk.css",
+    "static/js/781.a77b1a35.chunk.js": "/demo-soul/static/js/781.a77b1a35.chunk.js",
+    "static/css/36.f8f25117.chunk.css": "/demo-soul/static/css/36.f8f25117.chunk.css",
+    "static/js/36.686886b9.chunk.js": "/demo-soul/static/js/36.686886b9.chunk.js",
+    "index.html": "/demo-soul/index.html",
+    "static/media/preloader.svg": "/demo-soul/static/media/preloader.18a8c1b6ca881fcd26fbad92c460f585.svg",
+    "main.7ae0011d.css.map": "/demo-soul/static/css/main.7ae0011d.css.map",
+    "main.5c98273a.js.map": "/demo-soul/static/js/main.5c98273a.js.map",
+    "781.d7544690.chunk.css.map": "/demo-soul/static/css/781.d7544690.chunk.css.map",
+    "781.a77b1a35.chunk.js.map": "/demo-soul/static/js/781.a77b1a35.chunk.js.map",
+    "36.f8f25117.chunk.css.map": "/demo-soul/static/css/36.f8f25117.chunk.css.map",
+    "36.686886b9.chunk.js.map": "/demo-soul/static/js/36.686886b9.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7ae0011d.css",
-    "static/js/main.c72dd307.js"
+    "static/js/main.5c98273a.js"
   ]
 }
