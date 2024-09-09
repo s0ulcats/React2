@@ -13,7 +13,7 @@ import { compose } from 'redux';
 import { initializeApp } from './redux/app-reducer';
 import Preloader from './components/common/preloader/Preloader';
 import store from './redux/reduxStore';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Provider } from 'react-redux'
 
 const MessagesContainer = React.lazy(() => import('./components/Messages/MessagesContainer'))
@@ -34,7 +34,7 @@ class App extends Component {
         <Navbar />
         <div className='app-wrapper-content'>
           <Suspense fallback={<div><Preloader /></div>}>
-            <Routes>
+            <Routes><Route path='/profile' element={<ProfileContainer />} />
               <Route path='/profile/:userId' element={<ProfileContainer />} />
               <Route path='/messages' element={<MessagesContainer />} />
               <Route path='/login' element={<Login />} />
@@ -59,13 +59,13 @@ const AppContainer = compose(
 
 const SoulJsApp = (props) => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <React.StrictMode>
         <Provider store={store}>
           <AppContainer />
         </Provider>
       </React.StrictMode>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 

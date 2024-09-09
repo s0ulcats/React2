@@ -1,71 +1,90 @@
-import React from "react";
-import classes from './ProfileInfo.module.css'
+import React, { useState } from "react";
+import classes from './ProfileInfo.module.css';
 import Preloader from "../../common/preloader/Preloader";
-import { NavLink } from 'react-router-dom'
-import loginIMG from '../../../assets/images/unknownUser.png'
-import ProfileStatusWithHooks from './ProfileStatusWithHooks'
-const ProfileInfo = ({profile, status, updateStatus}) => {
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
+import loginIMG from '../../../assets/images/unknownUser.png';
+import ProfileDataForm from "./ProfileDataForm";
+import lookingAJob from '../../../assets/images/lookingForAjob.jpg'
+import employed from '../../../assets/images/employed.jpg'
+
+const ProfileInfo = ({ profile, status, updateStatus, isOwner, savePhoto, saveProfile }) => {
+    let [editMode, setEditMode] = useState(false);
 
     if (!profile) {
-        return <Preloader />
+        return <Preloader />;
+    }
+
+    const onMainPhotoSelected = (e) => {
+        if (e.target.files.length) {
+            savePhoto(e.target.files[0]);
+        }
+    }
+
+    const onSubmit = (formData) => {
+        console.log(formData)
     }
 
     return (
         <div>
-            <div>
-                <img src='https://c4.wallpaperflare.com/wallpaper/842/306/567/cool-pictures-of-mountains-1920x1080-wallpaper-preview.jpg' alt="" />
-            </div>
-            <div className={classes.descriptionBlock}>
-                {!profile.photos.large 
+            {!profile.photos.large
                 ? <img className={classes.unLoginImg} alt="" src={loginIMG} />
                 : <img alt="" src={profile.photos.large} />}
-                <div className={classes.fullName}>
-                    {profile.fullName}
-                </div>
-                {profile.aboutMe && (
-                    <div className={classes.aboutMe}>
-                        <div className={classes.aboutMeHead} >
-                        About Me
-                        </div>
-                        {profile.aboutMe}
-                    </div>
-                )}
-                <div className={classes.myContacts}>
-                    {Object.values(profile.contacts).some(contact => contact) && (
-                        <>
-                            My Contacts
-                            {profile.contacts.facebook && (
-                                <NavLink to={profile.contacts.facebook}>facebook</NavLink>
-                            )}
-                            {profile.contacts.website && (
-                                <NavLink to={profile.contacts.website}>website</NavLink>
-                            )}
-                            {profile.contacts.vk && (
-                                <NavLink to={profile.contacts.vk}>vk</NavLink>
-                            )}
-                            {profile.contacts.twitter && (
-                                <NavLink to={profile.contacts.twitter}>twitter</NavLink>
-                            )}
-                            {profile.contacts.instagram && (
-                                <NavLink to={profile.contacts.instagram}>instagram</NavLink>
-                            )}
-                            {profile.contacts.youtube && (
-                                <NavLink to={profile.contacts.youtube}>youtube</NavLink>
-                            )}
-                            {profile.contacts.github && (
-                                <NavLink to={profile.contacts.github}>github</NavLink>
-                            )}
-                            {profile.contacts.mainLink && (
-                                <NavLink to={profile.contacts.mainLink}>mainLink</NavLink>
-                            )}
-                        </>
-                    )}
-                </div>
-                <ProfileStatusWithHooks status={status} updateStatus={updateStatus}/>
+            {isOwner && <input type="file" onChange={onMainPhotoSelected} />}
+
+            {editMode
+                ? <ProfileDataForm
+                    profile={profile}
+                    handleReset={() => setEditMode(false)}
+                    saveProfile={saveProfile}
+                    setEditMode={setEditMode}
+                />
+                : <ProfileData goToEditMode={() => setEditMode(true)} profile={profile} isOwner={isOwner} />}
+
+
+            <div className={classes.descriptionBlock}>
+                <ProfileStatusWithHooks status={status} updateStatus={updateStatus} />
                 ava + description
             </div>
         </div>
+    );
+}
+
+const ProfileData = ({ profile, isOwner, goToEditMode }) => {
+    return (
+        <div>
+            {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
+            <div className={classes.job} >
+                {profile.lookingForAJob
+                    ? <img src={lookingAJob} alt="" />
+                    : <img src={employed} alt="" />}
+                <div>
+                    <b>My professional skills</b>: {profile.lookingForAJobDescription ? profile.lookingForAJobDescription : "none"}
+                </div>
+            </div>
+            <div className={classes.fullName}>
+                {profile.fullName}
+            </div>
+            {
+                profile.aboutMe && (
+                    <div className={classes.aboutMe}>
+                        <div className={classes.aboutMeHead} >
+                            About Me
+                        </div>
+                        {profile.aboutMe}
+                    </div>
+                )
+            }
+            <div className={classes.myContacts}>
+                <b>Contacts</b>: {Object.keys(profile.contacts).map(key => {
+                    return <Contact key={key} contactTitles={key} contactValue={profile.contacts[key]} />
+                })}
+            </div>
+        </div>
     )
+}
+
+const Contact = ({ contactTitle, contactValue }) => {
+    return <div className={classes.contact}><b>{contactTitle}</b>: {contactValue}</div>
 }
 
 export default ProfileInfo;
